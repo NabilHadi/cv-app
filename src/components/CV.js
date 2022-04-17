@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/CV.css";
+import EditableField from "./EditableField";
 import Field from "./Field";
 import Section from "./Section";
 
@@ -9,7 +10,7 @@ export default class CV extends React.Component {
 
     this.state = {
       about: {
-        name: { content: "My name", isEditing: false },
+        name: { content: "My name", isEditing: true },
         job: { content: "My job", isEditing: false },
         aboutDescription: { content: "My about", isEditing: false },
       },
@@ -34,10 +35,20 @@ export default class CV extends React.Component {
     };
 
     this.onFieldClick = this.onFieldClick.bind(this);
+    this.onFieldChange = this.onFieldSubmit.bind(this);
   }
 
   onFieldClick(e) {
     console.log(e.target);
+  }
+
+  onFieldSubmit(e, obj, key) {
+    console.log(this.state);
+    this.setState({
+      [obj]: {
+        [key]: e.target.value,
+      },
+    });
   }
 
   render() {
@@ -45,14 +56,58 @@ export default class CV extends React.Component {
 
     const aboutFields = [];
     for (const key in about) {
-      aboutFields.push(
-        <Field
-          key={key}
-          className={key}
-          textContent={about[key].content}
-          onFieldClick={this.onFieldClick}
-        />
-      );
+      if (about[key].isEditing) {
+        aboutFields.push(
+          <EditableField
+            key={key}
+            value={about[key].content}
+            onFieldChange={(e) => {
+              this.setState((prevState) => ({
+                ...prevState,
+                about: {
+                  ...prevState.about,
+                  [key]: {
+                    ...prevState.about[key],
+                    content: e.target.value,
+                  },
+                },
+              }));
+            }}
+            onFieldSubmit={() => {
+              this.setState((prevState) => ({
+                ...prevState,
+                about: {
+                  ...prevState.about,
+                  [key]: {
+                    ...prevState.about[key],
+                    isEditing: false,
+                  },
+                },
+              }));
+            }}
+          />
+        );
+      } else {
+        aboutFields.push(
+          <Field
+            key={key}
+            className={key}
+            textContent={about[key].content}
+            onFieldClick={() => {
+              this.setState((prevState) => ({
+                ...prevState,
+                about: {
+                  ...prevState.about,
+                  [key]: {
+                    ...prevState.about[key],
+                    isEditing: true,
+                  },
+                },
+              }));
+            }}
+          />
+        );
+      }
     }
     return (
       <div className="CV">
