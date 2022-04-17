@@ -9,9 +9,12 @@ export default class EditableField extends React.Component {
     };
   }
 
+  componentDidMount() {}
+
   render() {
     return (
       <input
+        autoFocus
         value={this.state.value}
         onChange={(e) => {
           this.setState({
@@ -23,6 +26,9 @@ export default class EditableField extends React.Component {
           if (e.key === "Enter") {
             this.props.onFieldSubmit(e);
           }
+        }}
+        onBlur={(e) => {
+          this.props.onFieldSubmit(e);
         }}
       />
     );
