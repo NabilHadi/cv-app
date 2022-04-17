@@ -1,3 +1,8 @@
 .CV {
   background-color: burlywood;
+  display: grid;
+  grid-template-areas: "About" "Contact" "Education" "Experience";
+  width: 70%;
+  border-radius: 20px;
+  padding: 10px;
 }
