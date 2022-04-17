@@ -1,0 +1,15 @@
+.About {
+  grid-area: About;
+}
+
+.Contact {
+  grid-area: Contact;
+}
+
+.Education {
+  grid-area: Education;
+}
+
+.Experience {
+  grid-area: Experience;
+}
