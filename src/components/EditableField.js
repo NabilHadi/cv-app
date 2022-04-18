@@ -14,6 +14,7 @@ export default class EditableField extends React.Component {
   render() {
     return (
       <input
+        className={this.props.className}
         autoFocus
         value={this.state.value}
         onChange={(e) => {

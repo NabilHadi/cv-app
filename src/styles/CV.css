@@ -1,8 +1,75 @@
 .CV {
   background-color: burlywood;
   display: grid;
-  grid-template-areas: "About" "Contact" "Education" "Experience";
-  width: 70%;
+  grid-template-areas:
+    "About"
+    "Contact"
+    "Education"
+    "Education"
+    "Education"
+    "Education"
+    "Experience"
+    "Experience"
+    "Experience"
+    "Experience";
+  min-width: 21cm;
+  min-height: 29.7cm;
   border-radius: 20px;
-  padding: 10px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+input {
+  border: 0;
+  display: block;
+  font-size: 100%;
+  font: inherit;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #449399;
+  background-color: transparent;
+  color: white;
+}
+
+.About {
+  grid-area: About;
+  background-color: #313c4e;
+  color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.About .fullName {
+  font-size: 2.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.About .job {
+  font-size: 1.2rem;
+  color: #449399;
+  margin-bottom: 1rem;
+}
+
+.Contact {
+  grid-area: Contact;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.Education {
+  grid-area: Education;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.Experience {
+  grid-area: Experience;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }

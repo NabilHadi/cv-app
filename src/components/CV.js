@@ -11,9 +11,12 @@ export default class CV extends React.Component {
     this.state = {
       about: {
         id: "about",
-        fullName: { content: "My name", isEditing: false },
-        job: { content: "My job", isEditing: false },
-        aboutDescription: { content: "My about", isEditing: false },
+        fullName: { content: "Your Name", isEditing: false },
+        job: { content: "Your job", isEditing: false },
+        aboutDescription: {
+          content: "About You",
+          isEditing: false,
+        },
       },
       contact: {
         id: "contact",
@@ -90,6 +93,7 @@ export default class CV extends React.Component {
         sectionFields.push(
           <EditableField
             key={key}
+            className={key}
             value={sectionObj[key].content}
             onFieldChange={this.onFieldChange.bind(this, sectionObj.id, key)}
             onFieldSubmit={this.onFieldSubmit.bind(this, sectionObj.id, key)}
