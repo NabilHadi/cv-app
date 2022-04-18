@@ -1,5 +1,5 @@
 .CV {
-  background-color: burlywood;
+  background-color: white;
   display: grid;
   grid-template-areas:
     "About"
@@ -28,6 +28,7 @@ input {
 input:focus {
   outline: none;
   border-bottom: 1px solid #449399;
+  margin-bottom: -2px;
   background-color: transparent;
   color: white;
 }
@@ -60,6 +61,21 @@ input:focus {
   grid-area: Contact;
   padding-left: 2rem;
   padding-right: 2rem;
+  background-color: #222a33;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.Contact > * {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 50%;
+  overflow: hidden;
 }
 
 .Education {
