@@ -93,7 +93,7 @@ export default class CV extends React.Component {
         sectionFields.push(
           <EditableField
             key={key}
-            className={key}
+            className={"field " + key}
             value={sectionObj[key].content}
             onFieldChange={this.onFieldChange.bind(this, sectionObj.id, key)}
             onFieldSubmit={this.onFieldSubmit.bind(this, sectionObj.id, key)}
@@ -103,7 +103,7 @@ export default class CV extends React.Component {
         sectionFields.push(
           <Field
             key={key}
-            className={key}
+            className={"field " + key}
             textContent={sectionObj[key].content}
             onFieldClick={this.onFieldClick.bind(this, sectionObj.id, key)}
           />
@@ -141,10 +141,14 @@ export default class CV extends React.Component {
     }
     return (
       <div className="CV">
-        <Section className="About">{this.getFields(about)}</Section>
-        <Section className="Contact">{this.getFields(contact)}</Section>
-        <Section className="Education">{this.getFields(education)}</Section>
-        <Section className="Experience">{this.getFields(experience)}</Section>
+        <Section className="section About">{this.getFields(about)}</Section>
+        <Section className="section Contact">{this.getFields(contact)}</Section>
+        <Section className="section Education">
+          {this.getFields(education)}
+        </Section>
+        <Section className="setion Experience">
+          {this.getFields(experience)}
+        </Section>
       </div>
     );
   }
