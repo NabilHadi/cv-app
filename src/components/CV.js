@@ -4,6 +4,9 @@ import EditableField from "./EditableField";
 import Field from "./Field";
 import Section from "./Section";
 
+import Icon from "@mdi/react";
+import { mdiEmail, mdiGithub, mdiLinkedin, mdiPhone } from "@mdi/js";
+
 export default class CV extends React.Component {
   constructor(props) {
     super(props);
@@ -31,21 +34,25 @@ export default class CV extends React.Component {
       contact: {
         id: "contact",
         email: {
+          icon: <Icon path={mdiEmail} size={1} />,
           content: "johndoe@gmail.com",
           desc: "Enter your email",
           isEditing: false,
         },
         phoneNuber: {
+          icon: <Icon path={mdiPhone} size={1} />,
           content: "+1 234 56789",
           desc: "Enter your Phone Number",
           isEditing: false,
         },
         githubAccount: {
+          icon: <Icon path={mdiGithub} size={1} />,
           content: "https://github.com/",
           desc: "Enter Your Github account",
           isEditing: false,
         },
         linkedInAccount: {
+          icon: <Icon path={mdiLinkedin} size={1} />,
           content: "https://www.linkedin.com/",
           desc: "Enter your LinkedIn account",
           isEditing: false,
@@ -153,6 +160,7 @@ export default class CV extends React.Component {
             key={key}
             className={"field " + key}
             placeHolder={sectionObj[key].desc}
+            icon={sectionObj[key].icon}
             value={sectionObj[key].content}
             onFieldChange={this.onFieldChange.bind(this, sectionObj.id, key)}
             onFieldSubmit={this.onFieldSubmit.bind(this, sectionObj.id, key)}
@@ -165,6 +173,7 @@ export default class CV extends React.Component {
             className={"field " + key}
             placeHolder={sectionObj[key].desc}
             textContent={sectionObj[key].content}
+            icon={sectionObj[key].icon}
             onFieldClick={this.onFieldClick.bind(this, sectionObj.id, key)}
           />
         );

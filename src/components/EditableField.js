@@ -11,26 +11,29 @@ export default class EditableField extends React.Component {
 
   render() {
     return (
-      <input
-        className={this.props.className}
-        autoFocus
-        placeholder={this.props.placeholder}
-        value={this.state.value}
-        onChange={(e) => {
-          this.setState({
-            value: e.target.value,
-          });
-          this.props.onFieldChange(e);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
+      <div className={this.props.className}>
+        {this.props.icon}
+        <input
+          className={this.props.className}
+          autoFocus
+          placeholder={this.props.placeholder}
+          value={this.state.value}
+          onChange={(e) => {
+            this.setState({
+              value: e.target.value,
+            });
+            this.props.onFieldChange(e);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              this.props.onFieldSubmit(e);
+            }
+          }}
+          onBlur={(e) => {
             this.props.onFieldSubmit(e);
-          }
-        }}
-        onBlur={(e) => {
-          this.props.onFieldSubmit(e);
-        }}
-      />
+          }}
+        />
+      </div>
     );
   }
 }
