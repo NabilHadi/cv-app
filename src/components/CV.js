@@ -117,7 +117,7 @@ export default class CV extends React.Component {
     this.onFieldSubmit = this.onFieldSubmit.bind(this);
   }
 
-  onFieldClick(parent, key, e) {
+  onFieldClick(parent, key) {
     this.setState((prevState) => ({
       ...prevState,
       [parent]: {
@@ -130,7 +130,7 @@ export default class CV extends React.Component {
     }));
   }
 
-  onFieldSubmit(parent, key, e) {
+  onFieldSubmit(parent, key) {
     this.setState((prevState) => ({
       ...prevState,
       [parent]: {
@@ -192,28 +192,6 @@ export default class CV extends React.Component {
   render() {
     const { about, contact, education, experience } = this.state;
 
-    const aboutFields = [];
-    for (const key in about) {
-      if (about[key].isEditing) {
-        aboutFields.push(
-          <EditableField
-            key={key}
-            value={about[key].content}
-            onFieldChange={this.onFieldChange.bind(this, "about", key)}
-            onFieldSubmit={this.onFieldSubmit.bind(this, "about", key)}
-          />
-        );
-      } else {
-        aboutFields.push(
-          <Field
-            key={key}
-            className={key}
-            textContent={about[key].content}
-            onFieldClick={this.onFieldClick.bind(this, "about", key)}
-          />
-        );
-      }
-    }
     return (
       <div className="CV" id="CV">
         <Section className="section About">
