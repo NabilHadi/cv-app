@@ -1,14 +1,6 @@
 import React from "react";
 
 export default class EditableField extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: props.value,
-    };
-  }
-
   render() {
     return (
       <div className={this.props.className}>
@@ -17,21 +9,14 @@ export default class EditableField extends React.Component {
           className={this.props.className}
           autoFocus
           placeholder={this.props.placeholder}
-          value={this.state.value}
-          onChange={(e) => {
-            this.setState({
-              value: e.target.value,
-            });
-            this.props.onFieldChange(e);
-          }}
+          value={this.props.value}
+          onChange={this.props.onFieldChange}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               this.props.onFieldSubmit(e);
             }
           }}
-          onBlur={(e) => {
-            this.props.onFieldSubmit(e);
-          }}
+          onBlur={this.props.onFieldSubmit}
         />
       </div>
     );
