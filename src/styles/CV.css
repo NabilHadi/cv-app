@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 2fr 2fr;
-  min-width: var(--a4-page-width);
-  max-height: var(--a4-page-height);
+  width: var(--a4-page-width);
+  height: var(--a4-page-height);
   font-family: "Ubuntu", sans-serif;
 }
 
@@ -48,7 +48,6 @@ input.field {
 
 .About .aboutDescription {
   margin-top: 10px;
-  font-size: 1.1rem;
 }
 
 .Contact {

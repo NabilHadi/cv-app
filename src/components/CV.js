@@ -11,33 +11,91 @@ export default class CV extends React.Component {
     this.state = {
       about: {
         id: "about",
-        fullName: { content: "Your Name", isEditing: false },
-        job: { content: "Your job", isEditing: false },
+        fullName: {
+          content: "John Doe",
+          desc: "Enter your full name",
+          isEditing: false,
+        },
+        job: {
+          content: "Software engineer",
+          desc: "Enter your curront position",
+          isEditing: false,
+        },
         aboutDescription: {
-          content: "About You",
+          content:
+            "More than eight years of experience in the medical industry. Involved in product testing, management, and rollout in the direct telemarketing channel of the new products.",
+          desc: "Enter A brief description about you",
           isEditing: false,
         },
       },
       contact: {
         id: "contact",
-        email: { content: "Your email", isEditing: false },
-        phoneNuber: { content: "Your phone number", isEditing: false },
-        githubAccount: { content: "Your GitHub Account", isEditing: false },
-        linkedInAccount: { content: "Your LinkedIn Account", isEditing: false },
+        email: {
+          content: "johndoe@gmail.com",
+          desc: "Enter your email",
+          isEditing: false,
+        },
+        phoneNuber: {
+          content: "+1 234 56789",
+          desc: "Enter your Phone Number",
+          isEditing: false,
+        },
+        githubAccount: {
+          content: "https://github.com/",
+          desc: "Enter Your Github account",
+          isEditing: false,
+        },
+        linkedInAccount: {
+          content: "https://www.linkedin.com/",
+          desc: "Enter your LinkedIn account",
+          isEditing: false,
+        },
       },
       education: {
         id: "education",
-        schoolName: { content: "Your School name", isEditing: false },
-        titleOfStudy: { content: "Your title of Study", isEditing: false },
-        dateOfStudy: { content: "Your Date of Study", isEditing: false },
+        schoolName: {
+          content: "UNIVERSITY OF MINNESOTA",
+          desc: "Enter your School Name",
+          isEditing: false,
+        },
+        titleOfStudy: {
+          content: "College of Design",
+          desc: "Enter your title of study",
+          isEditing: false,
+        },
+        dateOfStudy: {
+          content: "May 2011",
+          desc: "Enter your date of Study",
+          isEditing: false,
+        },
       },
       experience: {
         id: "experience",
-        companyName: { content: "Your company Name", isEditing: false },
-        positionTitle: { content: "Your position Title", isEditing: false },
-        startDate: { content: "Start Date", isEditing: false },
-        endDate: { content: "End date", isEditing: false },
-        mainTaks: { content: ["Tasks"], isEditing: false },
+        companyName: {
+          content: "PLANET BEACH",
+          desc: "Enter Your company Name",
+          isEditing: false,
+        },
+        positionTitle: {
+          content: "Spa Consultant",
+          desc: "Enter Your position Title",
+          isEditing: false,
+        },
+        startDate: {
+          content: "July 2009",
+          desc: "Enter Start Date",
+          isEditing: false,
+        },
+        endDate: {
+          content: "present",
+          desc: "Enter End date",
+          isEditing: false,
+        },
+        mainTasks: {
+          content: ["Tasks", "Hello"],
+          desc: "Enter your main tasks",
+          isEditing: false,
+        },
       },
     };
 
@@ -94,6 +152,7 @@ export default class CV extends React.Component {
           <EditableField
             key={key}
             className={"field " + key}
+            placeHolder={sectionObj[key].desc}
             value={sectionObj[key].content}
             onFieldChange={this.onFieldChange.bind(this, sectionObj.id, key)}
             onFieldSubmit={this.onFieldSubmit.bind(this, sectionObj.id, key)}
@@ -104,6 +163,7 @@ export default class CV extends React.Component {
           <Field
             key={key}
             className={"field " + key}
+            placeHolder={sectionObj[key].desc}
             textContent={sectionObj[key].content}
             onFieldClick={this.onFieldClick.bind(this, sectionObj.id, key)}
           />
