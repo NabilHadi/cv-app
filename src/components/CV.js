@@ -20,21 +20,21 @@ export default class CV extends React.Component {
       },
       contact: {
         id: "contact",
-        email: { content: "My email", isEditing: false },
-        phoneNuber: { content: "My phone number", isEditing: false },
-        githubAccount: { content: "My GitHub Account", isEditing: false },
-        linkedInAccount: { content: "My LinkedIn Account", isEditing: false },
+        email: { content: "Your email", isEditing: false },
+        phoneNuber: { content: "Your phone number", isEditing: false },
+        githubAccount: { content: "Your GitHub Account", isEditing: false },
+        linkedInAccount: { content: "Your LinkedIn Account", isEditing: false },
       },
       education: {
         id: "education",
-        schoolName: { content: "My School name", isEditing: false },
-        titleOfStudy: { content: "My title of Study", isEditing: false },
-        dateOfStudy: { content: "My Date of Study", isEditing: false },
+        schoolName: { content: "Your School name", isEditing: false },
+        titleOfStudy: { content: "Your title of Study", isEditing: false },
+        dateOfStudy: { content: "Your Date of Study", isEditing: false },
       },
       experience: {
         id: "experience",
-        companyName: { content: "My company Name", isEditing: false },
-        positionTitle: { content: "My position Title", isEditing: false },
+        companyName: { content: "Your company Name", isEditing: false },
+        positionTitle: { content: "Your position Title", isEditing: false },
         startDate: { content: "Start Date", isEditing: false },
         endDate: { content: "End date", isEditing: false },
         mainTaks: { content: ["Tasks"], isEditing: false },
@@ -140,7 +140,7 @@ export default class CV extends React.Component {
       }
     }
     return (
-      <div className="CV">
+      <div className="CV" id="CV">
         <Section className="section About">{this.getFields(about)}</Section>
         <Section className="section Contact">{this.getFields(contact)}</Section>
         <Section className="section Education">
