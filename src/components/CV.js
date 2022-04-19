@@ -144,9 +144,11 @@ export default class CV extends React.Component {
         <Section className="section About">{this.getFields(about)}</Section>
         <Section className="section Contact">{this.getFields(contact)}</Section>
         <Section className="section Education">
+          <h2 className="sectionTitle">Education</h2>
           {this.getFields(education)}
         </Section>
-        <Section className="setion Experience">
+        <Section className="section Experience">
+          <h2 className="sectionTitle">Experience</h2>
           {this.getFields(experience)}
         </Section>
       </div>
