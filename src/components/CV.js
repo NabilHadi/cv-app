@@ -105,7 +105,7 @@ export default class CV extends React.Component {
           isEditing: false,
         },
         mainTasks: {
-          content: ["Tasks", "Hello"],
+          content: ["Sell retail and memberships to meet company sales goals"],
           desc: "Enter your main tasks",
           isEditing: false,
         },
