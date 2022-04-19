@@ -9,8 +9,6 @@ export default class EditableField extends React.Component {
     };
   }
 
-  componentDidMount() {}
-
   render() {
     return (
       <input
