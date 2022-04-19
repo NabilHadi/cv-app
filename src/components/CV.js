@@ -5,7 +5,13 @@ import Field from "./Field";
 import Section from "./Section";
 
 import Icon from "@mdi/react";
-import { mdiEmail, mdiGithub, mdiLinkedin, mdiPhone } from "@mdi/js";
+import {
+  mdiAccount,
+  mdiEmail,
+  mdiGithub,
+  mdiLinkedin,
+  mdiPhone,
+} from "@mdi/js";
 
 export default class CV extends React.Component {
   constructor(props) {
@@ -153,7 +159,7 @@ export default class CV extends React.Component {
   getFields(sectionObj) {
     const sectionFields = [];
     for (const key in sectionObj) {
-      if (key === "id") continue;
+      if (key === "id" || sectionObj[key].ignore) continue;
       if (sectionObj[key].isEditing) {
         sectionFields.push(
           <EditableField
@@ -210,7 +216,10 @@ export default class CV extends React.Component {
     }
     return (
       <div className="CV" id="CV">
-        <Section className="section About">{this.getFields(about)}</Section>
+        <Section className="section About">
+          <div>{this.getFields(about)}</div>
+          <Icon path={mdiAccount} className="about-pic" />
+        </Section>
         <Section className="section Contact">{this.getFields(contact)}</Section>
         <Section className="section Education">
           <h2 className="sectionTitle">Education</h2>
