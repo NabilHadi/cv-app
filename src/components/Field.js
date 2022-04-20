@@ -1,14 +1,12 @@
 import React from "react";
 
-export default class Field extends React.Component {
-  render() {
-    return (
-      <div className={this.props.className} onClick={this.props.onFieldClick}>
-        {this.props.icon}
-        {this.props.textContent === ""
-          ? this.props.placeHolder
-          : this.props.textContent}
-      </div>
-    );
-  }
-}
+const Field = (props) => {
+  return (
+    <div className={props.className} onClick={props.onFieldClick}>
+      {props.icon}
+      {props.textContent === "" ? props.placeHolder : props.textContent}
+    </div>
+  );
+};
+
+export default Field;
