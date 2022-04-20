@@ -28,7 +28,7 @@ const CV = () => {
     },
     aboutDescription: {
       content:
-        "More than eight years of experience in the medical industry. Involved in product testing, management, and rollout in the direct telemarketing channel of the new products.",
+        "More than eight years of experience in the Software industry. Involved in product testing, management, and rollout in the direct telemarketing channel of the new products.",
       desc: "Enter A brief description about you",
       isEditing: false,
     },
