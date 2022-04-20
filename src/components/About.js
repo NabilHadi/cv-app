@@ -1,49 +1,9 @@
 import { mdiAccount } from "@mdi/js";
 import Icon from "@mdi/react";
 import React, { useState } from "react";
-import EditableField from "./EditableField";
-import Field from "./Field";
 import Section from "./Section";
 
-const getFieldView = (field, setField) => {
-  if (field.isEditing) {
-    return (
-      <EditableField
-        className={"field " + field.name}
-        placeHolder={field.desc}
-        icon={field.icon}
-        value={field.content}
-        onFieldChange={(e) => {
-          setField({
-            ...field,
-            content: e.target.value,
-          });
-        }}
-        onFieldSubmit={() => {
-          setField({
-            ...field,
-            isEditing: false,
-          });
-        }}
-      />
-    );
-  } else {
-    return (
-      <Field
-        className={"field " + field.name}
-        onFieldClick={() =>
-          setField({
-            ...field,
-            isEditing: true,
-          })
-        }
-      >
-        {field.icon}
-        {field.content ? field.content : field.desc}
-      </Field>
-    );
-  }
-};
+import { getFieldView } from "../utils";
 
 const About = () => {
   const [fullName, setFullName] = useState({
@@ -71,9 +31,13 @@ const About = () => {
   return (
     <Section className="section About">
       <div>
-        {getFieldView(fullName, setFullName)}
-        {getFieldView(job, setJob)}
-        {getFieldView(aboutDesc, setAboutDesc)}
+        {[
+          [fullName, setFullName],
+          [job, setJob],
+          [aboutDesc, setAboutDesc],
+        ].map((field) => {
+          return getFieldView(field[0], field[1]);
+        })}
       </div>
       <Icon path={mdiAccount} className="about-pic" />
     </Section>

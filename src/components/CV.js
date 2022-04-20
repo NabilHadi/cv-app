@@ -4,38 +4,10 @@ import EditableField from "./EditableField";
 import Field from "./Field";
 import Section from "./Section";
 
-import Icon from "@mdi/react";
-import { mdiEmail, mdiGithub, mdiLinkedin, mdiPhone } from "@mdi/js";
 import About from "./About";
+import Contact from "./Contact";
 
 const CV = () => {
-  const [contact, setContact] = useState({
-    id: "contact",
-    email: {
-      icon: <Icon path={mdiEmail} size={1} />,
-      content: "johndoe@gmail.com",
-      desc: "Enter your email",
-      isEditing: false,
-    },
-    phoneNuber: {
-      icon: <Icon path={mdiPhone} size={1} />,
-      content: "+1 234 56789",
-      desc: "Enter your Phone Number",
-      isEditing: false,
-    },
-    githubAccount: {
-      icon: <Icon path={mdiGithub} size={1} />,
-      content: "https://github.com/",
-      desc: "Enter Your Github account",
-      isEditing: false,
-    },
-    linkedInAccount: {
-      icon: <Icon path={mdiLinkedin} size={1} />,
-      content: "https://www.linkedin.com/",
-      desc: "Enter your LinkedIn account",
-      isEditing: false,
-    },
-  });
   const [education, setEducation] = useState({
     id: "education",
     schoolName: {
@@ -146,9 +118,7 @@ const CV = () => {
   return (
     <div className="CV" id="CV">
       <About />
-      <Section className="section Contact">
-        {getFields(contact, setContact)}
-      </Section>
+      <Contact />
       <Section className="section Education">
         <h2 className="sectionTitle">Education</h2>
         {getFields(education, setEducation)}
