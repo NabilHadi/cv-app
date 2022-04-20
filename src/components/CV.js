@@ -13,7 +13,7 @@ import {
   mdiPhone,
 } from "@mdi/js";
 
-const CV = (props) => {
+const CV = () => {
   const [about, setAbout] = useState({
     id: "about",
     fullName: {
@@ -108,45 +108,6 @@ const CV = (props) => {
       isEditing: false,
     },
   });
-
-  // const onFieldClick = (parent, key) => {
-  //   this.setState((prevState) => ({
-  //     ...prevState,
-  //     [parent]: {
-  //       ...prevState[parent],
-  //       [key]: {
-  //         ...prevState[parent][key],
-  //         isEditing: true,
-  //       },
-  //     },
-  //   }));
-  // };
-
-  // const onFieldSubmit = (parent, key) => {
-  //   this.setState((prevState) => ({
-  //     ...prevState,
-  //     [parent]: {
-  //       ...prevState[parent],
-  //       [key]: {
-  //         ...prevState[parent][key],
-  //         isEditing: false,
-  //       },
-  //     },
-  //   }));
-  // };
-
-  // const onFieldChange = (parent, key, e) => {
-  //   this.setState((prevState) => ({
-  //     ...prevState,
-  //     [parent]: {
-  //       ...prevState[parent],
-  //       [key]: {
-  //         ...prevState[parent][key],
-  //         content: e.target.value,
-  //       },
-  //     },
-  //   }));
-  // };
 
   const getFields = (sectionObj, updateFunction) => {
     const sectionFields = [];
