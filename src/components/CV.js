@@ -5,35 +5,10 @@ import Field from "./Field";
 import Section from "./Section";
 
 import Icon from "@mdi/react";
-import {
-  mdiAccount,
-  mdiEmail,
-  mdiGithub,
-  mdiLinkedin,
-  mdiPhone,
-} from "@mdi/js";
+import { mdiEmail, mdiGithub, mdiLinkedin, mdiPhone } from "@mdi/js";
+import About from "./About";
 
 const CV = () => {
-  const [about, setAbout] = useState({
-    id: "about",
-    fullName: {
-      content: "John Doe",
-      desc: "Enter your full name",
-      isEditing: false,
-    },
-    job: {
-      content: "Software engineer",
-      desc: "Enter your curront position",
-      isEditing: false,
-    },
-    aboutDescription: {
-      content:
-        "More than eight years of experience in the Software industry. Involved in product testing, management, and rollout in the direct telemarketing channel of the new products.",
-      desc: "Enter A brief description about you",
-      isEditing: false,
-    },
-  });
-
   const [contact, setContact] = useState({
     id: "contact",
     email: {
@@ -146,9 +121,6 @@ const CV = () => {
           <Field
             key={key}
             className={"field " + key}
-            placeHolder={sectionObj[key].desc}
-            textContent={sectionObj[key].content}
-            icon={sectionObj[key].icon}
             onFieldClick={() => {
               updateFunction({
                 ...sectionObj,
@@ -158,7 +130,12 @@ const CV = () => {
                 },
               });
             }}
-          />
+          >
+            {sectionObj[key].icon}
+            {sectionObj[key].content
+              ? sectionObj[key].content
+              : sectionObj[key].desc}
+          </Field>
         );
       }
     }
@@ -168,10 +145,7 @@ const CV = () => {
 
   return (
     <div className="CV" id="CV">
-      <Section className="section About">
-        <div>{getFields(about, setAbout)}</div>
-        <Icon path={mdiAccount} className="about-pic" />
-      </Section>
+      <About />
       <Section className="section Contact">
         {getFields(contact, setContact)}
       </Section>
