@@ -1,26 +1,26 @@
 import { mdiAccount } from "@mdi/js";
 import Icon from "@mdi/react";
-import React, { useState } from "react";
+import React from "react";
 import Section from "./Section";
 
-import { getFieldView } from "../utils";
+import { useField } from "../hooks";
 
 const About = () => {
-  const [fullName, setFullName] = useState({
+  const fullNameField = useField({
     name: "fullName",
     content: "John Doe",
     desc: "Enter your full name",
     isEditing: false,
   });
 
-  const [job, setJob] = useState({
+  const jobField = useField({
     name: "job",
     content: "Software engineer",
     desc: "Enter your curront position",
     isEditing: false,
   });
 
-  const [aboutDesc, setAboutDesc] = useState({
+  const aboutDescField = useField({
     name: "aboutDesc",
     content:
       "More than eight years of experience in the Software industry. Involved in product testing, management, and rollout in the direct telemarketing channel of the new products.",
@@ -31,13 +31,9 @@ const About = () => {
   return (
     <Section className="section About">
       <div>
-        {[
-          [fullName, setFullName],
-          [job, setJob],
-          [aboutDesc, setAboutDesc],
-        ].map((field) => {
-          return getFieldView(field[0], field[1]);
-        })}
+        {fullNameField}
+        {jobField}
+        {aboutDescField}
       </div>
       <Icon path={mdiAccount} className="about-pic" />
     </Section>

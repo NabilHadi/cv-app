@@ -1,12 +1,12 @@
 import { mdiEmail, mdiGithub, mdiLinkedin, mdiPhone } from "@mdi/js";
 import Icon from "@mdi/react";
-import React, { useState } from "react";
+import React from "react";
 import Section from "./Section";
 
-import { getFieldView } from "../utils";
+import { useField } from "../hooks";
 
 const Contact = () => {
-  const [email, setEmail] = useState({
+  const emailField = useField({
     name: "email",
     icon: <Icon path={mdiEmail} size={1} />,
     content: "johndoe@gmail.com",
@@ -14,7 +14,7 @@ const Contact = () => {
     isEditing: false,
   });
 
-  const [phoneNumber, setPhoneNumber] = useState({
+  const phoneNumberField = useField({
     name: "phoneNumber",
     icon: <Icon path={mdiPhone} size={1} />,
     content: "+1 234 56789",
@@ -22,7 +22,7 @@ const Contact = () => {
     isEditing: false,
   });
 
-  const [githubAccount, setGithubAccount] = useState({
+  const githubAccountField = useField({
     name: "githubAccount",
     icon: <Icon path={mdiGithub} size={1} />,
     content: "https://github.com/",
@@ -30,7 +30,7 @@ const Contact = () => {
     isEditing: false,
   });
 
-  const [linkedInAccount, setLinkedInAccount] = useState({
+  const linkedInAccountField = useField({
     name: "linkedInAccount",
     icon: <Icon path={mdiLinkedin} size={1} />,
     content: "https://www.linkedin.com/",
@@ -40,14 +40,10 @@ const Contact = () => {
 
   return (
     <Section className="section Contact">
-      {[
-        [email, setEmail],
-        [phoneNumber, setPhoneNumber],
-        [githubAccount, setGithubAccount],
-        [linkedInAccount, setLinkedInAccount],
-      ].map((field) => {
-        return getFieldView(field[0], field[1]);
-      })}
+      {emailField}
+      {phoneNumberField}
+      {githubAccountField}
+      {linkedInAccountField}
     </Section>
   );
 };
