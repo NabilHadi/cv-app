@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/CV.css";
 import EditableField from "./EditableField";
 import Field from "./Field";
@@ -13,150 +13,142 @@ import {
   mdiPhone,
 } from "@mdi/js";
 
-export default class CV extends React.Component {
-  constructor(props) {
-    super(props);
+const CV = (props) => {
+  const [about, setAbout] = useState({
+    id: "about",
+    fullName: {
+      content: "John Doe",
+      desc: "Enter your full name",
+      isEditing: false,
+    },
+    job: {
+      content: "Software engineer",
+      desc: "Enter your curront position",
+      isEditing: false,
+    },
+    aboutDescription: {
+      content:
+        "More than eight years of experience in the medical industry. Involved in product testing, management, and rollout in the direct telemarketing channel of the new products.",
+      desc: "Enter A brief description about you",
+      isEditing: false,
+    },
+  });
 
-    this.state = {
-      about: {
-        id: "about",
-        fullName: {
-          content: "John Doe",
-          desc: "Enter your full name",
-          isEditing: false,
-        },
-        job: {
-          content: "Software engineer",
-          desc: "Enter your curront position",
-          isEditing: false,
-        },
-        aboutDescription: {
-          content:
-            "More than eight years of experience in the medical industry. Involved in product testing, management, and rollout in the direct telemarketing channel of the new products.",
-          desc: "Enter A brief description about you",
-          isEditing: false,
-        },
-      },
-      contact: {
-        id: "contact",
-        email: {
-          icon: <Icon path={mdiEmail} size={1} />,
-          content: "johndoe@gmail.com",
-          desc: "Enter your email",
-          isEditing: false,
-        },
-        phoneNuber: {
-          icon: <Icon path={mdiPhone} size={1} />,
-          content: "+1 234 56789",
-          desc: "Enter your Phone Number",
-          isEditing: false,
-        },
-        githubAccount: {
-          icon: <Icon path={mdiGithub} size={1} />,
-          content: "https://github.com/",
-          desc: "Enter Your Github account",
-          isEditing: false,
-        },
-        linkedInAccount: {
-          icon: <Icon path={mdiLinkedin} size={1} />,
-          content: "https://www.linkedin.com/",
-          desc: "Enter your LinkedIn account",
-          isEditing: false,
-        },
-      },
-      education: {
-        id: "education",
-        schoolName: {
-          content: "UNIVERSITY OF MINNESOTA",
-          desc: "Enter your School Name",
-          isEditing: false,
-        },
-        titleOfStudy: {
-          content: "College of Design",
-          desc: "Enter your title of study",
-          isEditing: false,
-        },
-        dateOfStudy: {
-          content: "May 2011",
-          desc: "Enter your date of Study",
-          isEditing: false,
-        },
-      },
-      experience: {
-        id: "experience",
-        companyName: {
-          content: "PLANET BEACH",
-          desc: "Enter Your company Name",
-          isEditing: false,
-        },
-        positionTitle: {
-          content: "Spa Consultant",
-          desc: "Enter Your position Title",
-          isEditing: false,
-        },
-        startDate: {
-          content: "July 2009",
-          desc: "Enter Start Date",
-          isEditing: false,
-        },
-        endDate: {
-          content: "present",
-          desc: "Enter End date",
-          isEditing: false,
-        },
-        mainTasks: {
-          content: ["Sell retail and memberships to meet company sales goals"],
-          desc: "Enter your main tasks",
-          isEditing: false,
-        },
-      },
-    };
+  const [contact, setContact] = useState({
+    id: "contact",
+    email: {
+      icon: <Icon path={mdiEmail} size={1} />,
+      content: "johndoe@gmail.com",
+      desc: "Enter your email",
+      isEditing: false,
+    },
+    phoneNuber: {
+      icon: <Icon path={mdiPhone} size={1} />,
+      content: "+1 234 56789",
+      desc: "Enter your Phone Number",
+      isEditing: false,
+    },
+    githubAccount: {
+      icon: <Icon path={mdiGithub} size={1} />,
+      content: "https://github.com/",
+      desc: "Enter Your Github account",
+      isEditing: false,
+    },
+    linkedInAccount: {
+      icon: <Icon path={mdiLinkedin} size={1} />,
+      content: "https://www.linkedin.com/",
+      desc: "Enter your LinkedIn account",
+      isEditing: false,
+    },
+  });
+  const [education, setEducation] = useState({
+    id: "education",
+    schoolName: {
+      content: "UNIVERSITY OF MINNESOTA",
+      desc: "Enter your School Name",
+      isEditing: false,
+    },
+    titleOfStudy: {
+      content: "College of Design",
+      desc: "Enter your title of study",
+      isEditing: false,
+    },
+    dateOfStudy: {
+      content: "May 2011",
+      desc: "Enter your date of Study",
+      isEditing: false,
+    },
+  });
 
-    this.onFieldClick = this.onFieldClick.bind(this);
-    this.onFieldChange = this.onFieldChange.bind(this);
-    this.onFieldSubmit = this.onFieldSubmit.bind(this);
-  }
+  const [experience, setExperience] = useState({
+    id: "experience",
+    companyName: {
+      content: "PLANET BEACH",
+      desc: "Enter Your company Name",
+      isEditing: false,
+    },
+    positionTitle: {
+      content: "Spa Consultant",
+      desc: "Enter Your position Title",
+      isEditing: false,
+    },
+    startDate: {
+      content: "July 2009",
+      desc: "Enter Start Date",
+      isEditing: false,
+    },
+    endDate: {
+      content: "present",
+      desc: "Enter End date",
+      isEditing: false,
+    },
+    mainTasks: {
+      content: ["Sell retail and memberships to meet company sales goals"],
+      desc: "Enter your main tasks",
+      isEditing: false,
+    },
+  });
 
-  onFieldClick(parent, key) {
-    this.setState((prevState) => ({
-      ...prevState,
-      [parent]: {
-        ...prevState[parent],
-        [key]: {
-          ...prevState[parent][key],
-          isEditing: true,
-        },
-      },
-    }));
-  }
+  // const onFieldClick = (parent, key) => {
+  //   this.setState((prevState) => ({
+  //     ...prevState,
+  //     [parent]: {
+  //       ...prevState[parent],
+  //       [key]: {
+  //         ...prevState[parent][key],
+  //         isEditing: true,
+  //       },
+  //     },
+  //   }));
+  // };
 
-  onFieldSubmit(parent, key) {
-    this.setState((prevState) => ({
-      ...prevState,
-      [parent]: {
-        ...prevState[parent],
-        [key]: {
-          ...prevState[parent][key],
-          isEditing: false,
-        },
-      },
-    }));
-  }
+  // const onFieldSubmit = (parent, key) => {
+  //   this.setState((prevState) => ({
+  //     ...prevState,
+  //     [parent]: {
+  //       ...prevState[parent],
+  //       [key]: {
+  //         ...prevState[parent][key],
+  //         isEditing: false,
+  //       },
+  //     },
+  //   }));
+  // };
 
-  onFieldChange(parent, key, e) {
-    this.setState((prevState) => ({
-      ...prevState,
-      [parent]: {
-        ...prevState[parent],
-        [key]: {
-          ...prevState[parent][key],
-          content: e.target.value,
-        },
-      },
-    }));
-  }
+  // const onFieldChange = (parent, key, e) => {
+  //   this.setState((prevState) => ({
+  //     ...prevState,
+  //     [parent]: {
+  //       ...prevState[parent],
+  //       [key]: {
+  //         ...prevState[parent][key],
+  //         content: e.target.value,
+  //       },
+  //     },
+  //   }));
+  // };
 
-  getFields(sectionObj) {
+  const getFields = (sectionObj, updateFunction) => {
     const sectionFields = [];
     for (const key in sectionObj) {
       if (key === "id" || sectionObj[key].ignore) continue;
@@ -168,8 +160,24 @@ export default class CV extends React.Component {
             placeHolder={sectionObj[key].desc}
             icon={sectionObj[key].icon}
             value={sectionObj[key].content}
-            onFieldChange={this.onFieldChange.bind(this, sectionObj.id, key)}
-            onFieldSubmit={this.onFieldSubmit.bind(this, sectionObj.id, key)}
+            onFieldChange={(e) => {
+              updateFunction({
+                ...sectionObj,
+                [key]: {
+                  ...sectionObj[key],
+                  content: e.target.value,
+                },
+              });
+            }}
+            onFieldSubmit={() => {
+              updateFunction({
+                ...sectionObj,
+                [key]: {
+                  ...sectionObj[key],
+                  isEditing: false,
+                },
+              });
+            }}
           />
         );
       } else {
@@ -180,34 +188,42 @@ export default class CV extends React.Component {
             placeHolder={sectionObj[key].desc}
             textContent={sectionObj[key].content}
             icon={sectionObj[key].icon}
-            onFieldClick={this.onFieldClick.bind(this, sectionObj.id, key)}
+            onFieldClick={() => {
+              updateFunction({
+                ...sectionObj,
+                [key]: {
+                  ...sectionObj[key],
+                  isEditing: true,
+                },
+              });
+            }}
           />
         );
       }
     }
 
     return sectionFields;
-  }
+  };
 
-  render() {
-    const { about, contact, education, experience } = this.state;
+  return (
+    <div className="CV" id="CV">
+      <Section className="section About">
+        <div>{getFields(about, setAbout)}</div>
+        <Icon path={mdiAccount} className="about-pic" />
+      </Section>
+      <Section className="section Contact">
+        {getFields(contact, setContact)}
+      </Section>
+      <Section className="section Education">
+        <h2 className="sectionTitle">Education</h2>
+        {getFields(education, setEducation)}
+      </Section>
+      <Section className="section Experience">
+        <h2 className="sectionTitle">Experience</h2>
+        {getFields(experience, setExperience)}
+      </Section>
+    </div>
+  );
+};
 
-    return (
-      <div className="CV" id="CV">
-        <Section className="section About">
-          <div>{this.getFields(about)}</div>
-          <Icon path={mdiAccount} className="about-pic" />
-        </Section>
-        <Section className="section Contact">{this.getFields(contact)}</Section>
-        <Section className="section Education">
-          <h2 className="sectionTitle">Education</h2>
-          {this.getFields(education)}
-        </Section>
-        <Section className="section Experience">
-          <h2 className="sectionTitle">Experience</h2>
-          {this.getFields(experience)}
-        </Section>
-      </div>
-    );
-  }
-}
+export default CV;
