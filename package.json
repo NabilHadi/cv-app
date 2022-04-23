@@ -1,8 +1,8 @@
 {
-  "name": "cv-project",
+  "name": "cv-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://NabilHadi.github.io/cv-project",
+  "homepage": "http://NabilHadi.github.io/cv-app",
   "dependencies": {
     "@mdi/js": "^6.6.96",
     "@mdi/react": "^1.6.0",
