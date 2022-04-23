@@ -13,7 +13,7 @@ const TextAreaField = ({
 
   useEffect(() => {
     changeInputHeight(inputEl.current);
-  }, []);
+  });
 
   return (
     <div className={className}>

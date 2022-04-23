@@ -2,100 +2,45 @@ import { useState, useEffect } from "react";
 
 import EditableField from "./components/EditableField";
 import Field from "./components/Field";
-import TextAreaField from "./components/TextAreaField";
 
-export const useField = (defaultFieldData) => {
-  const [fieldData, setFieldData] = useState(defaultFieldData);
+export const useField = ({
+  name,
+  content: _content,
+  desc,
+  isEditing: _isEditing,
+  icon,
+  EditingFieldType = EditableField,
+}) => {
   const [fieldView, setFieldView] = useState(null);
+  const [isEditing, setIsEditing] = useState(_isEditing);
+  const [content, setContent] = useState(_content);
 
   useEffect(() => {
     function handleFieldClick() {
-      setFieldData({
-        ...fieldData,
-        isEditing: true,
-      });
+      setIsEditing(true);
     }
 
     function handleFieldChange(e) {
-      setFieldData({
-        ...fieldData,
-        content: e.target.value,
-      });
-    }
-
-    function handleFieldSubmit(e) {
-      setFieldData({
-        ...fieldData,
-        isEditing: false,
-      });
-    }
-
-    if (fieldData.isEditing) {
-      setFieldView(
-        <EditableField
-          className={"field " + fieldData.name}
-          placeHolder={fieldData.desc}
-          icon={fieldData.icon}
-          value={fieldData.content}
-          onFieldChange={handleFieldChange}
-          onFieldSubmit={handleFieldSubmit}
-        />
-      );
-    } else {
-      setFieldView(
-        <Field
-          className={"field " + fieldData.name}
-          onFieldClick={handleFieldClick}
-        >
-          {fieldData.icon}
-          {fieldData.content ? fieldData.content : fieldData.desc}
-        </Field>
-      );
-    }
-  }, [fieldData]);
-
-  return fieldView;
-};
-
-export const useTextAreaField = (defaultFieldData) => {
-  const [fieldData, setFieldData] = useState(defaultFieldData);
-  const [fieldView, setFieldView] = useState(null);
-
-  function changeInputHeight(inputEl) {
-    inputEl.style.height = "";
-    inputEl.style.height = inputEl.scrollHeight + "px";
-  }
-
-  useEffect(() => {
-    function handleFieldClick() {
-      setFieldData({
-        ...fieldData,
-        isEditing: true,
-      });
-    }
-
-    function handleFieldChange(e) {
+      setContent(e.target.value);
       changeInputHeight(e.target);
-      setFieldData({
-        ...fieldData,
-        content: e.target.value,
-      });
     }
 
     function handleFieldSubmit(e) {
-      setFieldData({
-        ...fieldData,
-        isEditing: false,
-      });
+      setIsEditing(false);
     }
 
-    if (fieldData.isEditing) {
+    function changeInputHeight(element) {
+      element.style.height = "";
+      element.style.height = element.scrollHeight + "px";
+    }
+
+    if (isEditing) {
       setFieldView(
-        <TextAreaField
-          className={"field " + fieldData.name}
-          placeHolder={fieldData.desc}
-          icon={fieldData.icon}
-          value={fieldData.content}
+        <EditingFieldType
+          className={"field " + name}
+          placeHolder={desc}
+          icon={icon}
+          value={content}
           onFieldChange={handleFieldChange}
           onFieldSubmit={handleFieldSubmit}
           changeInputHeight={changeInputHeight}
@@ -103,16 +48,13 @@ export const useTextAreaField = (defaultFieldData) => {
       );
     } else {
       setFieldView(
-        <Field
-          className={"field " + fieldData.name}
-          onFieldClick={handleFieldClick}
-        >
-          {fieldData.icon}
-          {fieldData.content ? fieldData.content : fieldData.desc}
+        <Field className={"field " + name} onFieldClick={handleFieldClick}>
+          {icon}
+          {content ? content : desc}
         </Field>
       );
     }
-  }, [fieldData]);
+  }, [name, content, desc, isEditing, icon]);
 
   return fieldView;
 };

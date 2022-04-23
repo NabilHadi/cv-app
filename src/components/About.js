@@ -3,7 +3,8 @@ import Icon from "@mdi/react";
 import React from "react";
 import Section from "./Section";
 
-import { useField, useTextAreaField } from "../hooks";
+import { useField } from "../hooks";
+import TextAreaField from "./TextAreaField";
 
 const About = () => {
   const fullNameField = useField({
@@ -20,12 +21,13 @@ const About = () => {
     isEditing: false,
   });
 
-  const aboutDescField = useTextAreaField({
+  const aboutDescField = useField({
     name: "aboutDesc",
     content:
       "More than eight years of experience in the Software industry. Involved in product testing, management, and rollout in the direct telemarketing channel of the new products.",
     desc: "Enter A brief description about you",
     isEditing: false,
+    EditingFieldType: TextAreaField,
   });
 
   return (
