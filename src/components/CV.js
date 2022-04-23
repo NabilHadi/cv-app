@@ -6,27 +6,9 @@ import Section from "./Section";
 
 import About from "./About";
 import Contact from "./Contact";
+import Education from "./Education";
 
 const CV = () => {
-  const [education, setEducation] = useState({
-    id: "education",
-    schoolName: {
-      content: "UNIVERSITY OF MINNESOTA",
-      desc: "Enter your School Name",
-      isEditing: false,
-    },
-    titleOfStudy: {
-      content: "College of Design",
-      desc: "Enter your title of study",
-      isEditing: false,
-    },
-    dateOfStudy: {
-      content: "May 2011",
-      desc: "Enter your date of Study",
-      isEditing: false,
-    },
-  });
-
   const [experience, setExperience] = useState({
     id: "experience",
     companyName: {
@@ -119,10 +101,7 @@ const CV = () => {
     <div className="CV" id="CV">
       <About />
       <Contact />
-      <Section className="section Education">
-        <h2 className="sectionTitle">Education</h2>
-        {getFields(education, setEducation)}
-      </Section>
+      <Education />
       <Section className="section Experience">
         <h2 className="sectionTitle">Experience</h2>
         {getFields(experience, setExperience)}

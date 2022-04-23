@@ -132,8 +132,9 @@ textarea.field {
   body * {
     visibility: hidden;
   }
+
   #CV,
-  #CV * {
+  #CV *:not(.print-hide) {
     visibility: visible;
   }
   #CV {
