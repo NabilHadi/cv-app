@@ -26,11 +26,32 @@ textarea.field {
   word-wrap: break-word;
 }
 
+button {
+  border: none;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:active {
+  opacity: 1;
+}
+
 .section {
   padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+}
+
+.section button {
+  padding: 8px 16px;
+  color: var(--main-color);
+  background-color: var(--secondary-alt-color);
+  width: fit-content;
+  align-self: center;
+  border-radius: 8px;
 }
 
 .About {
